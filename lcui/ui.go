@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 
 	"fyne.io/fyne/v2"
@@ -16,6 +17,10 @@ import (
 
 //go:generate fyne bundle -o icons.go Icon.png
 func main() {
+	startHiddenPtr := flag.Bool("start-hidden", false,
+		"Start the application in the background without showing the main window.")
+	flag.Parse()
+
 	application := app.NewWithID("net.khary.lcui")
 	application.SetIcon(resourceIconPng)
 
@@ -159,5 +164,9 @@ func main() {
 
 	mainWindow.SetContent(mainGroup)
 
-	mainWindow.ShowAndRun()
+	if (*startHiddenPtr == true) {
+		application.Run()
+	} else {
+		mainWindow.ShowAndRun()
+	}
 }
