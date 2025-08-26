@@ -37,6 +37,7 @@ A basic UI can be launched to allow control of the light:
 
 ```bash
 lcui
+lcui --start-hidden  # launch application in tray
 ```
 
 ![lcui Screen Shot](images/lcui.png)
